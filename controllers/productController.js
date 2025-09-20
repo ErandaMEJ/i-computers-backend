@@ -28,20 +28,25 @@ export function createProduct(req,res){
     )
 }
 
-export function getAllProducts(req,res){
-    if(isAdmin(req)){
-        Product.find().then(
-            (products)=>{
-                res.json(products)
-            }
-        ).catch(
-            (error)=>{
-                res.status(500).json({
-                    message : "Error Fetching Products",
-                    error : error.message
-                })
-            }
-        )
+export async function getAllProducts(req,res){
+
+    try{
+
+        if(isAdmin(req)){
+
+       // Product.find().then(
+        //    (products)=>{
+        //        res.json(products)
+        //    }
+        //).catch(
+        //    (error)=>{
+        //        res.status(500).json({
+        //            message : "Error Fetching Products",
+        //            error : error.message
+        //        })
+        //    }
+        //)
+        const products = await Product.find()
 
     }else{
         Product.find({isAvailable : true}).then(
@@ -53,11 +58,19 @@ export function getAllProducts(req,res){
                 res.status(500).json({
                     message : "Error Fetching Products",
                     error : error.message
-                })
+                });
             }
-        )
+            );
+        }
+
+    } catch(error){
+        res.status(500).json({
+            message : "Error Fetching Products",
+            error : error,
+        });
     }
-}
+}    
+    
 
 export function deleteProduct(req,res){
     if(!isAdmin(req)){
