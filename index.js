@@ -79,6 +79,11 @@ app.use((req, res, next) => {
 
 })
 
+// Health Check Route
+app.get('/ping', (req, res) => {
+  res.send('Pong! Server is awake.');
+});
+
 
 // routes
 app.use("/api/users", userRouter)
