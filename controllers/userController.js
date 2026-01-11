@@ -85,7 +85,7 @@ export function loginUser(req, res) {
                     };
 
                     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-                        expiresIn: "48h"
+                        expiresIn: "148h"
                     });
 
 
@@ -163,7 +163,7 @@ export async function googleLogin(req, res) {
             };
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
-                expiresIn: "48h"
+                expiresIn: "148h"
             });
 
 
@@ -193,7 +193,7 @@ export async function googleLogin(req, res) {
             };
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
-                expiresIn: "48h",
+                expiresIn: "148h",
             });
 
 
